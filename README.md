@@ -24,4 +24,4 @@ To run the program, run the "security-cam.py" file.
 I recommend editing the \etc\rc.local file (or using another method) to run the program from boot. This way, the raspberry pi just needs to be switched on for the program to run.
 
 ## Notes:
-I would recommend getting a large sd card. Once motion has been detected, the program will record the video and attempt to send an email notification. If the raspberry pi were to lose Wi-Fi connection, the email would not send so the video will be saved. This allows you to always access the recordings, even without a Wi-Fi connection.
+I would recommend getting a large sd card. Once motion has been detected, the program will record the video and attempt to send an email notification. If the raspberry pi were to lose Wi-Fi connection, the email would not send. To overcome this, the video file will be saved. This allows you to have access the recordings, even without a Wi-Fi connection.
