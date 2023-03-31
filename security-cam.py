@@ -1,6 +1,7 @@
 import os
 from picamera import PiCamera
 from gpiozero import MotionSensor
+
 from sendemail import send_email
 from load_creds import load_creds
 from email.message import EmailMessage
@@ -32,7 +33,7 @@ def startup():
     start_msg = EmailMessage()
     start_msg['subject'] = "System Notification"
     start_msg.set_content("Motion Detection system now online. Be alert for future notifications alerting you of motion.")
-    start_msg['to'] = "b.hen02@icloud.com"
+    start_msg['to'] = creds[2]
 
     file_name = record(10)
 
@@ -91,8 +92,11 @@ def send(msg):
 startup()
 
 while True:
+    camera.start_preview()
     print("Waiting for motion...")
-    pir.wait_for_motion()
+    while not pir.motion_detected:
+        camera.annotate_text = dt.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
     print("Motion Detected")
     file_name = record(30)
     notify(file_name)
